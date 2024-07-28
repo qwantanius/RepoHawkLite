@@ -96,10 +96,14 @@ const IndexPage = () => {
         })
       });
       const result = await response.json();
-      if (pageNum === 1) {
-        setRepositories(result.data.repository);
+      if (response.ok && result.data) {
+        if (pageNum === 1) {
+          setRepositories(result.data.repository);
+        } else {
+          setRepositories(prevRepos => [...prevRepos, ...result.data.repository]);
+        }
       } else {
-        setRepositories(prevRepos => [...prevRepos, ...result.data.repository]);
+        console.error('Error fetching repositories:', result.errors);
       }
     } catch (error) {
       console.error('Error fetching repositories:', error);

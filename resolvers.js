@@ -4,6 +4,8 @@ const { downloadAllRepositories } = require('./requests/download-all-repositorie
 const { createReposJson } = require('./cronified-secret-finder');
 const { recursivelyUnzip } = require('./unzipper');
 const { fetchWebhooks } = require('./requests/fetch-webhooks');
+const { promisify } = require('node:util');
+const { rimraf } = require('rimraf');
 
 async function getRepoInfoFromJson(outputFile) {
     const data = await fs.promises.readFile(outputFile, 'utf8');
@@ -11,10 +13,15 @@ async function getRepoInfoFromJson(outputFile) {
 }
 
 async function refreshCachedRepos(apiToken) {
-    const outputFile = path.join(__dirname, 'repos_info.json');
-    const results = await downloadAllRepositories(apiToken);
-
     const startDir = path.join(__dirname, 'tmp');
+    const outputFile = path.join(__dirname, 'repos_info.json');
+
+    await rimraf(startDir);
+    if (fs.existsSync(outputFile)) {
+        fs.unlinkSync(outputFile);
+    }
+
+    const results = await downloadAllRepositories(apiToken);
     await recursivelyUnzip(startDir);
     await createReposJson(outputFile);
 
@@ -41,7 +48,7 @@ const RepositoryResolvers = {
                         branchName,
                         ...repo.branches[branchName]
                     })) : [],
-                    webhooks
+                    webhooks: webhooks?.length ? webhooks : []
                 };
             }));
 

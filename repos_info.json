@@ -1238,8 +1238,8 @@
     "id": "repoA",
     "branches": {
       "main": {
-        "totalAmountOfFiles": 13229,
-        "totalSize": 212834716,
+        "totalAmountOfFiles": 13244,
+        "totalSize": 212874057,
         "amountOfYmlFiles": 128,
         "ymlFiles": [
           {
@@ -1891,8 +1891,8 @@
     "id": "repoB",
     "branches": {
       "main": {
-        "totalAmountOfFiles": 13243,
-        "totalSize": 212870921,
+        "totalAmountOfFiles": 13244,
+        "totalSize": 212882278,
         "amountOfYmlFiles": 128,
         "ymlFiles": [
           {
@@ -3245,8 +3245,8 @@
     "id": "transpol",
     "branches": {
       "main": {
-        "totalAmountOfFiles": 38,
-        "totalSize": 655880,
+        "totalAmountOfFiles": 39,
+        "totalSize": 656352,
         "amountOfYmlFiles": 0,
         "ymlFiles": []
       }
