@@ -43,7 +43,6 @@ async function collectBranchInfo(branchDir) {
 
 async function collectRepoInfo(reposDir) {
     const reposInfo = [];
-
     const repos = await fs.promises.readdir(reposDir, { withFileTypes: true });
 
     for (const repo of repos) {

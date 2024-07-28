@@ -26,7 +26,6 @@ async function refreshCachedRepos(apiToken) {
     await createReposJson(outputFile);
 
     const reposInfo = await getRepoInfoFromJson(outputFile);
-    console.log(results?.['smoky']);
 
     return { results, reposInfo };
 }
